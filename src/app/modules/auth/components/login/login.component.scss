@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding: 5rem;
+}
+form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.checkbox {
+  --mdc-theme-text-primary-on-background: #4a4a4a;
+  --mdc-checkbox-unselected-icon-color: #4a4a4a;
+  --mdc-checkbox-unselected-hover-icon-color: #4a4a4a;
+  --mdc-checkbox-unselected-focus-icon-color: #4a4a4a;
+}

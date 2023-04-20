@@ -1,1 +1,49 @@
-<p>signup works!</p>
+<h1>Signup Page</h1>
+<form [formGroup]="formGroup" (ngSubmit)="signup()">
+  <mat-form-field appearance="fill">
+    <mat-label>Full Name</mat-label>
+    <input matInput formControlName="fullName" />
+    <mat-error>
+      <error-viewer [control]="formGroup.get('fullName')"> </error-viewer>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" />
+    <mat-error>
+      <error-viewer [control]="formGroup.get('email')"> </error-viewer>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" autocomplete="off">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      [type]="hide ? 'password' : 'text'"
+      formControlName="password"
+    />
+    <button
+      type="button"
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+    <mat-error>
+      <error-viewer [control]="formGroup.get('password')"> </error-viewer>
+    </mat-error>
+  </mat-form-field>
+  <mat-checkbox
+    class="checkbox"
+    color="primary"
+    [(ngModel)]="rememberMe"
+    [ngModelOptions]="{ standalone: true }"
+    >Remember me</mat-checkbox
+  >
+  <button mat-raised-button color="primary">Signup</button>
+</form>
+
+<a routerLink="../login">Login</a>

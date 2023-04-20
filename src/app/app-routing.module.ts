@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { layoutGuard } from './core/layout.guard';
 import { authGuard } from './core/auth.guard';
 
 const routes: Routes = [
@@ -19,7 +18,7 @@ const routes: Routes = [
     path: 'layout',
     loadChildren: () =>
       import('./modules/layout/layout.module').then((m) => m.LayoutModule),
-    canActivate: [layoutGuard],
+    canActivate: [authGuard],
   },
 ];
 
