@@ -4,11 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './core/material/material.module';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-// import { environment } from '../environments/environment';
-import { environment } from 'src/environments/environment';
-import { provideAuth, getAuth } from '@angular/fire/auth';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpHandlerInterceptor } from './core/http-handler.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,10 +13,15 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpHandlerInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

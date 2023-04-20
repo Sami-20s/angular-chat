@@ -17,7 +17,6 @@ export const authGuard: CanActivateFn = (
   return authService.user.pipe(
     take(1),
     map((user) => {
-      console.log(user);
       const isAuth = !!user;
       if (route.url.findIndex((el) => el.path == 'layout') > -1) {
         if (isAuth) {
@@ -34,8 +33,4 @@ export const authGuard: CanActivateFn = (
       }
     })
   );
-  // if (document.cookie.indexOf('user') > -1) {
-  //   router.navigate(['layout']);
-  //   return false;
-  // }
 };
